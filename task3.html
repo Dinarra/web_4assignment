@@ -37,28 +37,54 @@
 </nav>
 <div class="container mt-4">
     <h1>Contact form</h1>
-    <form class="row g-3" action="#" method="post">
+    <form id="contactForm" class="row g-3" action="#" method="post" novalidate>
    <div class="col-md-6">
     <label for="name" class="form-label">Name:</label>
-    <input type="text" class="form-control is-valid" id="name" placeholder="Dinara" required minlength="2" maxlength="50">
+    <input type="text" class="form-control " id="name" placeholder="Dinara" required minlength="2" maxlength="50">
     <div class="valid-feedback">Looks good!</div>
-    <div class="invalid-feedback">Please enter your full name (2-50 characters).</div>
+    <div class="invalid-feedback">Name is required and must be between 2 and 50 characters long.</div>
 </div>
    <div class="col-md-6">
     <label for="email" class="form-label">Email:</label>
-    <input type="email" class="form-control is-valid" id="email" placeholder="dinara@example.com" required>
+    <input type="email" class="form-control " id="email" placeholder="dinara@example.com" required>
     <div class="valid-feedback">Looks good!</div>
-    <div class="invalid-feedback">Please enter a valid email address.</div>
+    <div class="invalid-feedback">Email is required and must be a valid email address.</div>
 </div>
    <div class="col-12">
     <label for="message" class="form-label">Message:</label>
     <textarea class="form-control" id="message" rows="4" placeholder="Enter your message" required minlength="10" maxlength="200"></textarea>
-   </div>
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">Message is required and must be between 10 and 200 characters long.</div>
+</div>
    <div class="col-12">
     <button type="submit" class="btn btn-primary">Submit</button>
    </div>
     </form>
 </div>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const form = document.getElementById('contactForm');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+
+function validateField(input) {
+  if (input.checkValidity()) {
+    input.classList.add("is-valid");
+    input.classList.remove("is-invalid");
+  } else {
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+  }
+}
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  validateField(nameInput);
+  validateField(emailInput);
+  validateField(messageInput);
+});
+    </script>
     </body>
 </html>
